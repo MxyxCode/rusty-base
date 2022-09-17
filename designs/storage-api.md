@@ -6,9 +6,6 @@ Author: Mycodee
 ```
   Storage Api is designed to storage the data in modular way. 
   So you can swap the direct access of the file system with storage servers.
-  
-  Features:
-    - 
 ```
 
 ----
