@@ -41,7 +41,7 @@ Container
 
 Storage
 ```
-  endpoint: Vec<Storaging>
+  endpoints: Vec<Storaging>
   default_endpoint: VecIndex
   
  async fn write_container(&self, container: impl Containering) -> Result<()>
@@ -56,31 +56,30 @@ Storage
 
  async fn delete_container(&self, id: &ContainerId, return_container: bool) -> Result<OptionalContainer>
  async fn delete_containers(&self, ids: Vec<&ContainerId>, return_containers: bool) -> Result<OptionalContainerCollection>
- async fn delete_all_containers(&self, return_containers: bool) -> Result<OptionalContainerCollection>
 ```
 
 # Traits 
 
 Containering
 ```
-  fn purpose() -> &'static str
+  fn purpose(&self) -> &'static str
 
   fn id(&self) -> ContainerId
 
   fn valid_container(&self, &Container) -> Result<Boolean>
 
-  fn from_container(&self, container: &Container) -> Result<Self>
+  fn from_container(container: &Container) -> Result<Self>
   fn to_container(&self) -> Result<Container>
 ```
 
 Storaging
 ```
-  fn name() -> &'static str
+  fn name(&self) -> &'static str
   
   async fn write_container(&self, container: Container) -> Result<()>
   async fn write_containers(&self, containers: Vec<Container>) -> Result<()>
   
-  async fn get_container_ids(&self) -> Result<Vec<String>>
+  async fn get_container_ids(&self) -> Result<Vec<ContainerId>>
   async fn exist_container(&self, id: &ContainerId) -> Result<bool>
   
   async fn read_container(&self, id: &ContainerId) -> Result<Container>
